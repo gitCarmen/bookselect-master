@@ -32,15 +32,15 @@ def get_index_url(url):
 
 # get_index_url(start_url)
 
-# channel_list = '''
-#     http://www.tsxsw.com/fenlei1/
-#     http://www.tsxsw.com/fenlei2/
-#     http://www.tsxsw.com/fenlei3/
-#     http://www.tsxsw.com/fenlei4/
-#     http://www.tsxsw.com/fenlei5/
-#     http://www.tsxsw.com/fenlei6/
-#     http://www.tsxsw.com/fenlei7/
-#     http://www.tsxsw.com/qb/
-# '''
-channel_list = get_index_url(url_host)[1:-1]
-print(channel_list)
+channel_list = '''
+    'fenlei1'
+    'fenlei2'
+    'fenlei3'
+    'fenlei4'
+    'fenlei5'
+    'fenlei6'
+    'fenlei7'
+
+'''
+# channel_list = get_index_url(url_host)[1:-1]
+# print(channel_list)

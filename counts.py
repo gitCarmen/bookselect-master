@@ -1,6 +1,7 @@
 import time
-from pages_parsing import url_list
-
+from chapters import chapter_list
+from books import book_list
 while True:
-    print(url_list.find().count())
-    time.sleep(5)
+    print(chapter_list.find().count())
+    time.sleep(15)
+# print(book_list.find().count())

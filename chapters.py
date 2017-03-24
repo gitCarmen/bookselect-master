@@ -21,13 +21,18 @@ def get_chapter_list(url):
     time.sleep(1)
 
     # 开始解析网页数据
-    user_agent='Mozilla/4.0(compatible;MSIE 5.5;Windows NT)'
-    headers={'User_Agent':user_agent}
-    request = urllib.request.Request(url, headers=headers)
-    response = urllib.request.urlopen(request)
-    html = response.read()
-    soup=BeautifulSoup(html,"lxml")
+    # user_agent='Mozilla/4.0(compatible;MSIE 5.5;Windows NT)'
+    # headers={'User_Agent':user_agent}
+    # request = urllib.request.Request(url, headers=headers)
+    # response = urllib.request.urlopen(request)
+    # html = response.read()
+    # soup=BeautifulSoup(html,"lxml")
+    wb_data = requests.get(url)
+    wb_data.encoding = 'gbk'
 
+    # wb_data.encoding = 'gb18030'
+    time.sleep(1)
+    soup = BeautifulSoup(wb_data.text, 'html.parser')
     # 鼠标放到标题上，右键，审查元素，再右键，提取Css Path
     title = soup.title.text.split('/')[0]
     columns =soup.select('tr ')
@@ -38,12 +43,10 @@ def get_chapter_list(url):
     state=detail[2].text
     update=detail[3].text
 
-    # print(str(columns[2]).split('href='))
-    # soup2 = BeautifulSoup(columns[1],'lxml')
-    # print(soup2)
+
     chapters = soup.select('ul.chapters > li > a ')
 
-    num=0
+
     for i,  chapter in enumerate (chapters):
         data={
             'chapter_name': chapter.get_text(),
@@ -51,8 +54,8 @@ def get_chapter_list(url):
             'book_title':title,
             'author':author,
             'cate':cate,
-            'chapter_id':i,
-
+            'chapter_id':i+1,
+            'book_link':url,
             # 'chapter_no':num+1
 
         }
@@ -61,4 +64,4 @@ def get_chapter_list(url):
         print(data)
         chapter_list.insert(data)
 
-get_chapter_list('http://www.tsxsw.com/html/33/33730/')
+# get_chapter_list('http://www.tsxsw.com/html/33/33730/')
